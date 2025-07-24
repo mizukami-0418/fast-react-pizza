@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom';
+import LinkButton from '../../ui/LinkButton';
 
 function EmptyCart() {
   return (
-    <div>
-      <Link to="/menu">👈 メニューに戻る</Link>
+    <div className="px-4 py-3">
+      <LinkButton to="/menu">👈 メニューに戻る</LinkButton>
 
-      <p>カートが空です。ピザを選んでください 😃</p>
+      <p className="mt-7 font-semibold">
+        カートが空です。ピザを選んでください 😃
+      </p>
     </div>
   );
 }
