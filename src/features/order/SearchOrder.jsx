@@ -12,7 +12,6 @@ function SearchOrder() {
     setQuery(''); // 検索後に入力フィールドをクリア
 
     // 検索処理をここに追加
-    console.log('Searching for order:', query);
   }
 
   return (
