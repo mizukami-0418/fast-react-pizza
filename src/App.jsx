@@ -7,6 +7,7 @@ import CreateOrder, {
   action as createOrderAction,
 } from './features/order/CreateOrder.jsx';
 import Order, { loader as orderLoader } from './features/order/Order.jsx';
+import { action as updateOrderAction } from './features/order/UpdateOrder.jsx';
 import AppLayout from './ui/AppLayout.jsx';
 
 // ルーターの設定
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
         element: <Order />,
         loader: orderLoader, // 注文のデータをロードするためのローダーを指定
         errorElement: <Error />, // 注文詳細のエラーを表示するための要素を指定
+        action: updateOrderAction, // 注文更新のアクションを指定
       },
     ], // AppLayoutをルート要素として設定
   },
