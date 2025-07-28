@@ -21,9 +21,7 @@ function Order() {
     },
     [fetcher.data, fetcher.state, fetcher],
   );
-
-  // デバッグ用にfetcherのデータをログ出力
-  // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
+  // 誰でもすべての注文を検索できるため、プライバシー保護の観点から、名前や住所は表示しません。これらの情報はレストランのスタッフ専用です。
   const {
     id,
     status,
@@ -43,7 +41,7 @@ function Order() {
         <div className="space-x-2">
           {priority && (
             <span className="rounded-full bg-red-500 px-3 py-1 text-sm tracking-wide text-red-50 uppercase">
-              Priority
+              お急ぎ便
             </span>
           )}
           <span className="rounded-full bg-green-500 px-3 py-1 text-sm tracking-wide text-green-50 uppercase">
@@ -54,11 +52,11 @@ function Order() {
       <div className="flex flex-wrap items-center justify-between gap-2 bg-stone-200 px-6 py-5">
         <p className="font-medium">
           {deliveryIn >= 0
-            ? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
-            : 'Order should have arrived'}
+            ? `あと${calcMinutesLeft(estimatedDelivery)}分です 😃`
+            : '到着済みのご注文です'}
         </p>
         <p className="text-xs text-stone-500">
-          (Estimated delivery: {formatDate(estimatedDelivery)})
+          (お届け予定: {formatDate(estimatedDelivery)})
         </p>
       </div>
       <ul className="divide-y divide-stone-200 border-t border-b">
@@ -76,15 +74,15 @@ function Order() {
       </ul>
       <div className="space-y-2 bg-stone-200 px-6 py-5">
         <p className="text-sm font-medium text-stone-600">
-          Price pizza: {formatCurrency(orderPrice)}
+          ピザ価格: {formatCurrency(orderPrice)}
         </p>
         {priority && (
           <p className="text-sm font-medium text-stone-600">
-            Price priority: {formatCurrency(priorityPrice)}
+            お急ぎ便: {formatCurrency(priorityPrice)}
           </p>
         )}
         <p className="font-bold">
-          To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
+          合計価格: {formatCurrency(orderPrice + priorityPrice)}
         </p>
       </div>
       {!priority && <UpdateOrder order={order} />}
@@ -94,7 +92,7 @@ function Order() {
 
 export async function loader({ params }) {
   const order = await getOrder(params.orderId);
-  return order; // Assume getOrder fetches the order data
+  return order; // getOrder が注文データを取得すると仮定します
 }
 
 export default Order;

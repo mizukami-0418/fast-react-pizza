@@ -6,10 +6,10 @@ function Error() {
 
   return (
     <div>
-      <h1>Something went wrong 😢</h1>
+      <h1>エラーが起きっちゃったよ 😢</h1>
       <p>{error.data || error.message}</p>
 
-      <LinkButton to="-1">🔙 前のページに戻る</LinkButton>
+      <LinkButton to="-1">👈 前のページに戻る</LinkButton>
     </div>
   );
 }

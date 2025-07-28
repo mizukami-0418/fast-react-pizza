@@ -10,17 +10,18 @@ function getPosition() {
 export const fetchAddress = createAsyncThunk(
   'user/fetchAddress',
   async function () {
-    // 1) We get the user's geolocation position
+    // 1) ユーザーの位置情報を取得
     const positionObj = await getPosition();
     const position = {
       latitude: positionObj.coords.latitude,
       longitude: positionObj.coords.longitude,
     };
 
-    // 2) Then we use a reverse geocoding API to get a description of the user's address, so we can display it the order form, so that the user can correct it if wrong
+    // 2) その後、リバースジオコーディングAPIを使用してユーザーの住所を取得。
+    // 注文フォームに表示できるようにします。これにより、ユーザーが間違っていれば修正できるようになります。
     const addressObj = await getAddress(position);
     const address = `${addressObj?.locality}, ${addressObj?.city} ${addressObj?.postcode}, ${addressObj?.countryName}`;
-    // 3) Then we return an object with the data that we are interested in
+    // 3) 必要なデータを含むオブジェクトを返す
     return { position, address };
   },
 );

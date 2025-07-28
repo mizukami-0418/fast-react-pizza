@@ -20,7 +20,7 @@ function CreateUser() {
   return (
     <form onSubmit={handleSubmit}>
       <p className="mb-4 text-sm text-stone-600 md:text-base">
-        👋 ようこそ ピザ屋さんへ！最初にユーザー名を教えてね。
+        👋 ようこそ ピザールへ！最初にユーザー名を教えてね。
       </p>
 
       <input

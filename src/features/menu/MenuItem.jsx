@@ -39,7 +39,7 @@ function MenuItem({ pizza }) {
             <p className="text-sm">{formatCurrency(unitPrice)}</p>
           ) : (
             <p className="text-sm font-medium text-red-500 uppercase">
-              Sold out
+              売り切れ
             </p>
           )}
 

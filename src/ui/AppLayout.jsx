@@ -19,9 +19,11 @@ function AppLayout() {
         </main>
       </div>
       <CartOverview />
-      {/* <footer className="app-footer">
-        <p>&copy; 2023 Fast React Pizza</p>
-      </footer> */}
+      <footer className="bg-yellow-400 px-4 py-3 sm:px-6">
+        <p className="text-center">
+          &copy; 2025 ポートフォリオピザショップ PIZZALU
+        </p>
+      </footer>
     </div>
   );
 }
