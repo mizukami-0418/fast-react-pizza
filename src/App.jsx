@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from './ui/Home.jsx';
+import Error from './ui/Error.jsx';
+import Menu, { loader as menuLoader } from './features/menu/Menu.jsx';
+import Cart from './features/cart/Cart.jsx';
+import CreateOrder, {
+  action as createOrderAction,
+} from './features/order/CreateOrder.jsx';
+import Order, { loader as orderLoader } from './features/order/Order.jsx';
+import { action as updateOrderAction } from './features/order/UpdateOrder.jsx';
+import AppLayout from './ui/AppLayout.jsx';
+
+// ルーターの設定
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    errorElement: <Error />,
+
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '/menu',
+        element: <Menu />,
+        loader: menuLoader, // メニューのデータをロードするためのローダーを指定
+        errorElement: <Error />, // メニューのエラーを表示するための要素を指定
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
+      },
+      {
+        path: '/order/new',
+        element: <CreateOrder />,
+        action: createOrderAction, // 注文作成のアクションを指定
+        errorElement: <Error />, // 注文作成時のエラーを表示するための要素を指定
+      },
+      {
+        path: '/order/:orderId',
+        element: <Order />,
+        loader: orderLoader, // 注文のデータをロードするためのローダーを指定
+        errorElement: <Error />, // 注文詳細のエラーを表示するための要素を指定
+        action: updateOrderAction, // 注文更新のアクションを指定
+      },
+    ], // AppLayoutをルート要素として設定
+  },
+]);
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
